@@ -2,24 +2,44 @@
 
 import 'package:flutter/material.dart';
 
-class TodoCard extends StatelessWidget {
+import 'coloor.dart';
+
+class TodoCard extends StatefulWidget {
   String date;
   String time;
   String notes;
+  int col2;
 
   TodoCard(
-      {super.key, required this.date, required this.time, required this.notes});
+      {super.key,
+      required this.date,
+      required this.time,
+      required this.notes,
+      required this.col2});
+
+  @override
+  State<TodoCard> createState() => _TodoCardState();
+}
+
+class _TodoCardState extends State<TodoCard> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Material(
       child: Container(
           decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(20)),
+              color: setD(widget.col2),
+              borderRadius: BorderRadius.circular(20)),
           width: MediaQuery.of(context).size.width / 2.3,
           child: Padding(
             padding: const EdgeInsets.all(10),
             child: Column(
+              // mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
                   height: 20,
@@ -27,7 +47,7 @@ class TodoCard extends StatelessWidget {
                 SizedBox(
                   height: 120,
                   child: Text(
-                    notes,
+                    widget.notes,
                     style: const TextStyle(fontSize: 20),
                     overflow: TextOverflow.fade,
                   ),
@@ -35,7 +55,7 @@ class TodoCard extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      date,
+                      widget.date,
                       style: const TextStyle(fontSize: 17),
                     ),
                     const Text(
@@ -43,7 +63,7 @@ class TodoCard extends StatelessWidget {
                       style: TextStyle(fontSize: 17),
                     ),
                     Text(
-                      time,
+                      widget.time,
                       style: const TextStyle(fontSize: 17),
                     ),
                     // SizedBox(

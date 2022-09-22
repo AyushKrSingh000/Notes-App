@@ -1,12 +1,15 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../utils/ColoredBosed.dart';
+import '../utils/coloor.dart';
 import 'homepage.dart';
 
 String Name2 = '';
 
+// ignore: must_be_immutable
 class EditNote extends StatefulWidget {
   int index;
   EditNote({super.key, required this.index});
@@ -20,6 +23,7 @@ class _EditNoteState extends State<EditNote> {
   void setStringLt(String desc) async {
     final SharedPreferences prefs = await _prefs;
     currData = prefs.getStringList('data') as List<String>;
+
     currData[widget.index] = desc;
     prefs.setStringList('data', currData);
     currData = prefs.getStringList('data') as List<String>;
@@ -53,57 +57,121 @@ class _EditNoteState extends State<EditNote> {
     super.initState();
   }
 
+  void setColor2(String de) async {
+    final SharedPreferences prefs = await _prefs;
+    currDa = prefs.getStringList('color') as List<String>;
+    currDa[widget.index] = de;
+    prefs.setStringList('color', currDa);
+    setState(() {});
+    colorData = currDa.map((i) => int.parse(i)).toList();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        setStringLt(Name2);
         Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
-        return await Future.delayed(Duration.zero);
+        return Future.delayed(Duration.zero);
       },
       child: Material(
+        color: Colors.white,
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
-              Container(
-                // height: 200,
-                height: 700,
-                width: 380,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white),
-                child: TextFormField(
-                  maxLines: 200,
-                  initialValue: Name2,
-                  style: TextStyle(
-                    fontSize: 20,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  InkWell(
+                      onTap: () {
+                        setColor2('1');
+                      },
+                      child: ColoredBox2(color: Colors.amber[100] as Color)),
+                  const SizedBox(
+                    width: 20,
                   ),
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white, width: 0),
-                          borderRadius: BorderRadius.circular(20))),
-                  onChanged: (value) {
-                    setState(() {
-                      Name2 = value;
-                    });
-                    setStringLt(Name2);
-                    setStringL();
-                    setStringL2();
-                    setState(() {});
-                  },
+                  InkWell(
+                      onTap: () {
+                        setColor2('2');
+                      },
+                      child:
+                          ColoredBox2(color: Colors.lightGreen[100] as Color)),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  InkWell(
+                      onTap: () {
+                        setColor2('3');
+                      },
+                      child:
+                          ColoredBox2(color: Colors.lightBlue[100] as Color)),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  InkWell(
+                      onTap: () {
+                        setColor2('4');
+                      },
+                      child: ColoredBox2(color: Colors.orange[100] as Color)),
+                  const SizedBox(width: 20),
+                  InkWell(
+                      onTap: () {
+                        setColor2('5');
+                      },
+                      child:
+                          ColoredBox2(color: Colors.redAccent[100] as Color)),
+                ],
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Hero(
+                tag: widget.index,
+                child: Material(
+                  child: Container(
+                    // height: 200,
+                    height: 700,
+                    width: 380,
+                    decoration: BoxDecoration(
+                        // borderRadius: BorderRadius.circular(20),
+                        color: setD(colorData[widget.index])),
+                    child: TextFormField(
+                      maxLines: 200,
+                      initialValue: Name2,
+                      style: const TextStyle(
+                        fontSize: 20,
+                      ),
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        errorBorder: InputBorder.none,
+                        disabledBorder: InputBorder.none,
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          Name2 = value;
+                        });
+                        setStringLt(Name2);
+                        setStringL();
+                        setStringL2();
+                        setState(() {});
+                      },
+                    ),
+                  ),
                 ),
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    setStringLt(Name2);
+              // ElevatedButton(
+              //     onPressed: () {
+              //       setStringLt(Name2);
 
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, '/home', (route) => false);
-                  },
-                  child: Text("Save")),
+              //       Navigator.pushNamedAndRemoveUntil(
+              //           context, '/home', (route) => false);
+              //     },
+              //     child: Text("Save")),
             ],
           ),
         ),
