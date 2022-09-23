@@ -72,65 +72,81 @@ class _EditNoteState extends State<EditNote> {
     return WillPopScope(
       onWillPop: () async {
         Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+        if (Name2 == '') {
+          removeStrings2(widget.index);
+        }
+
         return Future.delayed(Duration.zero);
       },
-      child: Material(
-        color: Colors.white,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 40,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  InkWell(
-                      onTap: () {
-                        setColor2('1');
-                      },
-                      child: ColoredBox2(color: Colors.amber[100] as Color)),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  InkWell(
-                      onTap: () {
-                        setColor2('2');
-                      },
-                      child:
-                          ColoredBox2(color: Colors.lightGreen[100] as Color)),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  InkWell(
-                      onTap: () {
-                        setColor2('3');
-                      },
-                      child:
-                          ColoredBox2(color: Colors.lightBlue[100] as Color)),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  InkWell(
-                      onTap: () {
-                        setColor2('4');
-                      },
-                      child: ColoredBox2(color: Colors.orange[100] as Color)),
-                  const SizedBox(width: 20),
-                  InkWell(
-                      onTap: () {
-                        setColor2('5');
-                      },
-                      child:
-                          ColoredBox2(color: Colors.redAccent[100] as Color)),
-                ],
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Hero(
-                tag: widget.index,
-                child: Material(
+      child: Hero(
+        tag: widget.index,
+        child: Material(
+          color: setD(colorData[widget.index]),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 40,
+                ),
+                Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    child: Container(
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: Colors.grey[100],
+                          borderRadius: BorderRadius.circular(20)),
+
+                      // width:,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          InkWell(
+                              onTap: () {
+                                setColor2('1');
+                              },
+                              child: ColoredBox2(
+                                  color: Colors.amber[100] as Color)),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          InkWell(
+                              onTap: () {
+                                setColor2('2');
+                              },
+                              child: ColoredBox2(
+                                  color: Colors.lightGreen[100] as Color)),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          InkWell(
+                              onTap: () {
+                                setColor2('3');
+                              },
+                              child: ColoredBox2(
+                                  color: Colors.lightBlue[100] as Color)),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          InkWell(
+                              onTap: () {
+                                setColor2('4');
+                              },
+                              child: ColoredBox2(
+                                  color: Colors.orange[100] as Color)),
+                          const SizedBox(width: 20),
+                          InkWell(
+                              onTap: () {
+                                setColor2('5');
+                              },
+                              child: ColoredBox2(
+                                  color: Colors.redAccent[100] as Color)),
+                        ],
+                      ),
+                    )),
+                const SizedBox(
+                  height: 5,
+                ),
+                Material(
                   child: Container(
                     // height: 200,
                     height: 700,
@@ -163,16 +179,16 @@ class _EditNoteState extends State<EditNote> {
                     ),
                   ),
                 ),
-              ),
-              // ElevatedButton(
-              //     onPressed: () {
-              //       setStringLt(Name2);
+                // ElevatedButton(
+                //     onPressed: () {
+                //       setStringLt(Name2);
 
-              //       Navigator.pushNamedAndRemoveUntil(
-              //           context, '/home', (route) => false);
-              //     },
-              //     child: Text("Save")),
-            ],
+                //       Navigator.pushNamedAndRemoveUntil(
+                //           context, '/home', (route) => false);
+                //     },
+                //     child: Text("Save")),
+              ],
+            ),
           ),
         ),
       ),

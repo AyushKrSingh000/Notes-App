@@ -148,7 +148,7 @@ class _AddNoteState extends State<AddNote> {
     } else {
       oldData3 = prefs.getStringList('time') as List<String>;
       oldData3[oldData3.length - 1] =
-          '${DateTime.now().hour % 12}:${DateTime.now().minute < 10 ? '0' : ''}${DateTime.now().minute}${DateTime.now().hour / 12 < 1 ? ' AM' : ' PM'}';
+          '${DateTime.now().hour % 13}:${DateTime.now().minute < 10 ? '0' : ''}${DateTime.now().minute}${DateTime.now().hour / 12 < 1 ? ' AM' : ' PM'}';
       prefs.setStringList('time', oldData3);
     }
     currData3 = prefs.getStringList('time') as List<String>;
@@ -179,54 +179,68 @@ class _AddNoteState extends State<AddNote> {
         return await Future.delayed(Duration.zero);
       },
       child: Material(
+        color: col,
         child: SingleChildScrollView(
           child: Column(
             children: [
               const SizedBox(
                 height: 40,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  InkWell(
-                      onTap: () {
-                        SetColor2('1');
-                      },
-                      child: ColoredBox2(color: Colors.amber[100] as Color)),
-                  const SizedBox(
-                    width: 20,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                child: Container(
+                  height: 40,
+                  decoration: BoxDecoration(
+                      color: Colors.grey[100],
+                      borderRadius: BorderRadius.circular(20)),
+
+                  // width:,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                          onTap: () {
+                            SetColor2('1');
+                          },
+                          child:
+                              ColoredBox2(color: Colors.amber[100] as Color)),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      InkWell(
+                          onTap: () {
+                            SetColor2('2');
+                          },
+                          child: ColoredBox2(
+                              color: Colors.lightGreen[100] as Color)),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      InkWell(
+                          onTap: () {
+                            SetColor2('3');
+                          },
+                          child: ColoredBox2(
+                              color: Colors.lightBlue[100] as Color)),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      InkWell(
+                          onTap: () {
+                            SetColor2('4');
+                          },
+                          child:
+                              ColoredBox2(color: Colors.orange[100] as Color)),
+                      const SizedBox(width: 20),
+                      InkWell(
+                          onTap: () {
+                            SetColor2('5');
+                          },
+                          child: ColoredBox2(
+                              color: Colors.redAccent[100] as Color)),
+                    ],
                   ),
-                  InkWell(
-                      onTap: () {
-                        SetColor2('2');
-                      },
-                      child:
-                          ColoredBox2(color: Colors.lightGreen[100] as Color)),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  InkWell(
-                      onTap: () {
-                        SetColor2('3');
-                      },
-                      child:
-                          ColoredBox2(color: Colors.lightBlue[100] as Color)),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  InkWell(
-                      onTap: () {
-                        SetColor2('4');
-                      },
-                      child: ColoredBox2(color: Colors.orange[100] as Color)),
-                  const SizedBox(width: 20),
-                  InkWell(
-                      onTap: () {
-                        SetColor2('5');
-                      },
-                      child:
-                          ColoredBox2(color: Colors.redAccent[100] as Color)),
-                ],
+                ),
               ),
               const SizedBox(
                 height: 5,
@@ -251,7 +265,7 @@ class _AddNoteState extends State<AddNote> {
                     errorBorder: InputBorder.none,
                     disabledBorder: InputBorder.none,
                     // prefixText: ,
-                    hintText: 'Name,Age,etc..',
+                    hintText: 'Write Here ....',
                   ),
                   onChanged: (value) {
                     setState(() {

@@ -43,6 +43,7 @@ class _TodoHomePageState extends State<TodoHomePage> {
       currData3 = prefs.getStringList('time') as List<String>;
       List<String> temp = prefs.getStringList('color') as List<String>;
       colorData = temp.map((i) => int.parse(i)).toList();
+      print(colorData);
       setState(() {});
     }
 
@@ -137,7 +138,7 @@ class _TodoHomePageState extends State<TodoHomePage> {
                         onTap: () {
                           Navigator.of(context).push(PageRouteBuilder(
                               transitionDuration:
-                                  const Duration(milliseconds: 300),
+                                  const Duration(milliseconds: 800),
                               pageBuilder: (_, __, ___) => EditNote(
                                   index: currData.length - index - 1)));
                         },
