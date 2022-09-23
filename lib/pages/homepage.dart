@@ -142,16 +142,13 @@ class _TodoHomePageState extends State<TodoHomePage> {
                               pageBuilder: (_, __, ___) => EditNote(
                                   index: currData.length - index - 1)));
                         },
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 10, 5, 0),
-                          child: Hero(
-                            tag: currData.length - index - 1,
-                            child: TodoCard(
-                                col2: colorData[currData.length - index - 1],
-                                date: currData2[currData.length - index - 1],
-                                time: currData3[currData.length - index - 1],
-                                notes: currData[currData.length - index - 1]),
-                          ),
+                        child: Hero(
+                          tag: currData.length - index - 1,
+                          child: TodoCard(
+                              col2: colorData[currData.length - index - 1],
+                              date: currData2[currData.length - index - 1],
+                              time: currData3[currData.length - index - 1],
+                              notes: currData[currData.length - index - 1]),
                         ),
                       );
                     },

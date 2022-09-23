@@ -143,12 +143,12 @@ class _AddNoteState extends State<AddNote> {
     final SharedPreferences prefs = await _prefs;
     if (prefs.getStringList('time') == null) {
       oldData3.add(
-          '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}');
+          '${DateTime.now().hour % 13}:${DateTime.now().minute < 10 ? '0' : ''}${DateTime.now().minute}${DateTime.now().hour / 12 < 1 ? ' AM' : ' PM'}');
       prefs.setStringList('time', oldData3);
     } else {
       oldData3 = prefs.getStringList('time') as List<String>;
       oldData3[oldData3.length - 1] =
-          '${DateTime.now().hour % 13}:${DateTime.now().minute < 10 ? '0' : ''}${DateTime.now().minute}${DateTime.now().hour / 12 < 1 ? ' AM' : ' PM'}';
+          '${DateTime.now().hour == 12 ? '12' : DateTime.now().hour % 12}:${DateTime.now().minute < 10 ? '0' : ''}${DateTime.now().minute}${DateTime.now().hour / 12 < 1 ? ' AM' : ' PM'}';
       prefs.setStringList('time', oldData3);
     }
     currData3 = prefs.getStringList('time') as List<String>;

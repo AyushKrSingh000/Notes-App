@@ -29,7 +29,8 @@ class _TodoCardState extends State<TodoCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(5, 10, 5, 0),
       child: Container(
           decoration: BoxDecoration(
               color: setD(widget.col2),

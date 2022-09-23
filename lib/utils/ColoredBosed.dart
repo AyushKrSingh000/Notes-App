@@ -8,18 +8,14 @@ class ColoredBox2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: InkWell(
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: color,
-          ),
-          height: 30,
-          width: 30,
-          // child: Text("Hello"),
-        ),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: color,
       ),
+      height: 30,
+      width: 30,
+      // child: Text("Hello"),
     );
   }
 }
